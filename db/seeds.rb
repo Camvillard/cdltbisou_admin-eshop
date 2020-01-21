@@ -28,8 +28,12 @@ cartes = Category.create!(
   name: "cartes"
 )
 
-calendrier = Category.create!(
-  name: "calendrier"
+calendriers = Category.create!(
+  name: "calendriers"
+)
+
+affiches = Category.create!(
+  name: "affiches"
 )
 
 puts "creating tags"
@@ -38,10 +42,21 @@ Tag.create!(
   name: "pour tous les jours"
 )
 
-deux_mille_vingt = Tag.create!(
-  name: "deux mille vingt"
+amour = Tag.create!(
+  name: "pour les mots d'amour"
 )
 
+Tag.create!(
+  name: "pour les jours de fête"
+)
+
+maison = Tag.create!(
+  name: "pour la maison"
+)
+
+organisation = Tag.create!(
+  name: "pour l'organisation'"
+)
 
 puts "creating products"
 
@@ -51,13 +66,33 @@ calendar = Product.create!(
   photo: "",
   stock: 12,
   sku: "CAL_2020",
-  category: calendrier,
+  category: calendriers,
   price_cents: 5200
 )
 
-puts "creating products"
+how = Product.create!(
+  name: "how you doin' ?",
+  description: "description pour les cartes",
+  photo: "",
+  stock: 12,
+  sku: "CAR_HOW",
+  category: cartes,
+  price_cents: 500
+)
+
+puts "associating tags for products"
 
 ProductTag.create!(
   product: calendar,
-  tag: deux_mille_vingt
+  tag: organisation
+)
+
+ProductTag.create!(
+  product: calendar,
+  tag: organisation
+)
+
+ProductTag.create!(
+  product: how,
+  tag: amour
 )
