@@ -31,6 +31,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def destroy
     @product.destroy
+    render status: 200
   end
 
   private
@@ -40,7 +41,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :sku, :photo, :stock)
+    params.require(:product).permit(:name, :description, :sku, :photo, :stock, :slug)
   end
 
 end
