@@ -13,9 +13,8 @@ class Api::V1::TagsController < ApplicationController
 
   def create
     @tag = Tag.new(tag_params)
-    @tag.category = Category.find_by(name: params[:product][:category])
     if @tag.save!
-      render json: @tag, status: :created, location: api_v1_product_url(@tag)
+      render json: @tag, status: :created, location: api_v1_tag_url(@tag)
     else
       render json: @tag.errors, status: :unprocessable_entity
     end
@@ -31,6 +30,7 @@ class Api::V1::TagsController < ApplicationController
 
   def destroy
     @tag.destroy
+    # render status: 200
   end
 
   private
@@ -40,7 +40,7 @@ class Api::V1::TagsController < ApplicationController
   end
 
     def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:name, :slug)
   end
 
 end
